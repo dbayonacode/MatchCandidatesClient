@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <div class="row" *ngIf="hideJobContainerOptions">      
+    <div class="row" *ngIf="hideJobContainerOptions">
       <button type="button" class="btn btn-lg btn-{{classButton}} ml-3" (click)="getCandidate()"
         [disabled]="! hideButton">Search</button>
     </div>
@@ -73,5 +73,36 @@
     </div>
   </div>
 
-  <!-- Create here candidate container -->
+  <div class="candidateContainer">
+    <div class="row">
+      <div class="col-sm-12 d-flex flex-column">
+        <div class="card w-75 mt-3 mx-5" *ngFor="let candidate of candidates">
+          <div class="card-header">
+            <img src="assets/candidate-image.png" class="avatar mr-3" alt="...">
+            <span class="font-weight-bold">{{candidate.name}}</span>
+          </div>
+          <div class="card-body">
+
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="font-weight-bold">Score:</td>
+                  <td class="px-0">{{candidate.totalWeight}}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Skills:</td>
+                  <td>
+                    <ul class="px-0">
+                      <li *ngFor="let skill of candidate.skillTags"> {{skill.name}}</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

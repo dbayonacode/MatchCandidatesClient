@@ -82,4 +82,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  getCandidate() {
+    this.spinner = true;
+
+    if (typeof this.jobId != 'undefined') {
+      this._matchingService.getMostQualifiedCandidate(this.jobId, this.numberCandidates, this.relevance).subscribe(candidateResult => {
+        this.candidates = candidateResult;
+        this.spinner = false;
+      }, error => {
+        this.errorMesage = <any>error;
+        
+      });
+    }
+    else {
+      this.candidates = null;
+      this.hideJobContainerOptions = false;
+    }
+  }
+
 }

@@ -5,6 +5,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Prerequisites
 
+Install Node.js.
+Install Angular CLI.
+Visual Studio Code  (Optional)
+
+To verify and install Prerequisites
+
 Open command Line:
 
 1. First verify the version of node in your machine: (if it is not installed - Install it)

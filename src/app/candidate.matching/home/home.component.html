@@ -1,3 +1,77 @@
-<p>
-  home works!
-</p>
+<div class="d-flex flex-row">
+  <div class="jobContainer mr-3 mt-3">
+    <div class="row">
+      <div class="col-sm-12">
+        <label for="jobsFormControl" class="col-form-label font-weight-bold">Jobs</label>
+        <select [(ngModel)]="jobId" class="form-control form-control-sm" id="jobsFormControl"
+          (change)="getSingleCandidate()">
+          <option [ngValue]="undefined" selected>-- Select Job --</option>
+          <option [value]="job.jobId" *ngFor="let job of jobs">{{job.name}}</option>
+        </select>
+
+        <div *ngIf="errorMesage" class="alert alert-danger mb-0 mt-1">
+          <p>{{errorMesage}}</p>
+        </div>
+
+        <div class="row" *ngIf="hideJobContainerOptions">
+          <div class="col-sm-6 pt-3">
+            <label (click)="setOption('quality')" class="mr-5">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked> Quality
+            </label>
+            <label (click)="setOption('quantity')">
+              <input type="radio" name="options" id="option2" autocomplete="off"> Quantity
+            </label>
+          </div>
+          <div class="col-sm-6 d-flex align-items-center pt-3">
+            <select [(ngModel)]="numberCandidates" class="form-control form-control-sm" id="nroCandidatesFormControl"
+              (change)="setNumberCandidates()">
+              <option [ngValue]="undefined" selected>-- # Candidates --</option>
+              <option value="1">One Candidate</option>
+              <option value="5">Five Candidates</option>
+              <option value="-1">All</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row mt-5" *ngIf="hideJobContainerOptions">
+      <div class="col-sm-12" *ngIf="jobSelected">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Job Title</th>
+              <th scope="col">Company</th>
+              <th scope="col">Skill Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{jobSelected.name}}</td>
+              <td>{{jobSelected.company}}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let skill of jobSelected.skills"> {{skill.name}}</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="hideJobContainerOptions">      
+      <button type="button" class="btn btn-lg btn-{{classButton}} ml-3" (click)="getCandidate()"
+        [disabled]="! hideButton">Search</button>
+    </div>
+  </div>
+
+  <div class="container-loader mt-3">
+    <div class="d-flex justify-content-center">
+      <div class="loader" [ngStyle]="{'visibility': spinner?'visible':'hidden'}"></div>
+    </div>
+  </div>
+
+  <!-- Create here candidate container -->
+</div>

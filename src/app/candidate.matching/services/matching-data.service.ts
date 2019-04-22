@@ -12,7 +12,7 @@ export class MatchingDataService {
 
   constructor(private _http: HttpClient) { }
 
-  apiUrl: string = "https://localhost:44368/api/";
+  apiUrl: string = "https://localhost:44327/api/";
 
   getJobs(): Observable<IJob[]> {
 
